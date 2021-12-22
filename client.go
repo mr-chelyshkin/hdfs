@@ -298,6 +298,12 @@ func (c *Client) CopyToRemote(src string, dst string) error {
 	return remote.Close()
 }
 
+// https://github.com/colinmarc/hdfs/pull/219/files
+// https://github.com/colinmarc/hdfs/issues/233
+func (c *Client) ServerDefaults() (*hdfs.FsServerDefaultsProto, error) {
+	return c.fetchDefaults()
+}
+
 func (c *Client) fetchDefaults() (*hdfs.FsServerDefaultsProto, error) {
 	if c.defaults != nil {
 		return c.defaults, nil
