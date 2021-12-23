@@ -65,3 +65,15 @@ func ParseChallenge(challenge []byte) (*Challenge, error) {
 
 	return &ch, nil
 }
+
+func HighestQopLevel(qopList []string) string {
+	// Search provided list for most secure qop level.
+	for _, r := range []string{QopPrivacy, QopIntegrity, QopAuthentication} {
+		for _, qop := range qopList {
+			if qop == r {
+				return r
+			}
+		}
+	}
+	return ""
+}
